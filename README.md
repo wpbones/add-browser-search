@@ -6,6 +6,7 @@ Publish your site's search as an OpenSearch description, so browsers offer to ad
 [![WordPress Plugin Required PHP Version](https://img.shields.io/wordpress/plugin/required-php/add-browser-search)](https://wordpress.org/plugins/add-browser-search/)
 [![WordPress Plugin Tested WP Version](https://img.shields.io/wordpress/plugin/tested/add-browser-search)](https://wordpress.org/plugins/add-browser-search/)
 [![License](https://img.shields.io/badge/license-GPLv2-blue.svg)](https://www.gnu.org/licenses/gpl-2.0.html)
+[![Try it in WordPress Playground](https://img.shields.io/badge/Try%20it-WordPress%20Playground-3858e9?logo=wordpress&logoColor=white)](https://playground.wordpress.net/?blueprint-url=https://raw.githubusercontent.com/wpbones/add-browser-search/main/assets/blueprints/blueprint.json)
 
 <div align="center">
   <p><img src="https://raw.githubusercontent.com/wpbones/.github/main/glancecard/add-browser-search.svg" width="880" alt="Add Browser Search at a glance, refreshed daily: commits, releases, stars, issues and pull requests, a year of commit activity, the weekly rhythm, languages, latest commits and releases, contributors" /><br>
