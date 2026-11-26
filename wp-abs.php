@@ -2,7 +2,7 @@
 
 /**
  * Plugin Name: Add Browser Search
- * Plugin URI: https://wordpress.org/plugins/add-browser-search/
+ * Plugin URI: https://github.com/wpbones/add-browser-search
  * Description: Publish your site's search as an OpenSearch description, so browsers offer to add it as a search engine and can search your site from the address bar.
  * Version: 2.0.0
  * Requires at least: 6.6
