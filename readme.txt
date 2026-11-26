@@ -107,7 +107,7 @@ Yes! Please report bugs at [the support forum](https://wordpress.org/support/plu
 
 ### 2.0.1
 
-* Translations load through WP Bones 3.4.1, which reads the plugin's `Text Domain` and `Domain Path`; the plugin no longer loads them itself. The translations a site sees do not change.
+* Translations load through WP Bones 3.4.1, which reads the plugin's `Text Domain` and `Domain Path`; the plugin no longer loads them itself. The `Domain Path` header now has the leading slash WordPress documents. The translations a site sees do not change.
 
 ### 2.0.0
 
