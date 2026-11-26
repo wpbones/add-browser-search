@@ -1,0 +1,42 @@
+.add-browser-search .abs-copy {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+
+.add-browser-search .abs-copy input {
+  flex: 1 1 320px;
+  max-width: 560px;
+}
+
+.add-browser-search .abs-count {
+  margin-left: 6px;
+  color: #646970;
+  font-variant-numeric: tabular-nums;
+}
+
+.add-browser-search .abs-count.is-full {
+  color: #b32d2e;
+}
+
+.add-browser-search .abs-error {
+  margin: 4px 0 0;
+  color: #b32d2e;
+}
+
+.add-browser-search .abs-xml {
+  max-width: 960px;
+  max-height: 420px;
+  overflow: auto;
+  padding: 12px 14px;
+  background: #fff;
+  border: 1px solid #c3c4c7;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.add-browser-search .abs-check {
+  max-width: 800px;
+  line-height: 1.6;
+}
