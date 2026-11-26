@@ -7,6 +7,11 @@ Publish your site's search as an OpenSearch description, so browsers offer to ad
 [![WordPress Plugin Tested WP Version](https://img.shields.io/wordpress/plugin/tested/add-browser-search)](https://wordpress.org/plugins/add-browser-search/)
 [![License](https://img.shields.io/badge/license-GPLv2-blue.svg)](https://www.gnu.org/licenses/gpl-2.0.html)
 
+<div align="center">
+  <p><img src="https://raw.githubusercontent.com/wpbones/.github/main/glancecard/add-browser-search.svg" width="880" alt="Add Browser Search at a glance, refreshed daily: commits, releases, stars, issues and pull requests, a year of commit activity, the weekly rhythm, languages, latest commits and releases, contributors" /><br>
+  <sub>Made with <a href="https://github.com/gfazioli/glancecard">glancecard</a> · refreshed daily</sub></p>
+</div>
+
 ## Overview
 
 The plugin serves an [OpenSearch 1.1](https://github.com/dewitt/opensearch) description of your WordPress search at `/opensearch.xml` and puts a `<link rel="search">` tag in the head of every page. A browser that reads it can offer "add this search engine", and a visitor who adds it searches your site from the address bar.
