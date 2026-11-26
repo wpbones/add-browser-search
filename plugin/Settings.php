@@ -217,14 +217,9 @@ final class Settings
    */
   public static function template(string $url): string
   {
-    $url = trim($url);
+    $clean = esc_url_raw(str_replace(self::SEARCH_TERMS, self::TOKEN, trim($url)), ['http', 'https']);
 
-    if (strpos($url, self::SEARCH_TERMS) === false) {
-      return '';
-    }
-
-    $clean = esc_url_raw(str_replace(self::SEARCH_TERMS, self::TOKEN, $url), ['http', 'https']);
-
+    // No placeholder in the address, or an address WordPress refuses, comes out as ''.
     if ($clean === '' || strpos($clean, self::TOKEN) === false) {
       return '';
     }
