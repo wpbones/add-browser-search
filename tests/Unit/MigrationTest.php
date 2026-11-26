@@ -47,9 +47,44 @@ final class MigrationTest extends MonkeyTestCase
     $this->assertTrue($new['suggestions']);
   }
 
-  public function testTheContactTheAdministratorPublishedIsKept(): void
+  public function testTheAdministratorEmailThatWasOnlyTheOldDefaultIsNotKeptPublic(): void
   {
-    $this->assertSame('admin@example.test', Migration::map($this->legacyDefaults())['contact']);
+    $this->assertSame('', Migration::map($this->legacyDefaults())['contact']);
+
+    $old = $this->legacyDefaults();
+    $old['wp_abs_contact'] = 'ADMIN@example.test';
+    $this->assertSame('', Migration::map($old)['contact'], 'case does not matter');
+  }
+
+  public function testAContactTheAdministratorChoseIsKept(): void
+  {
+    $old = $this->legacyDefaults();
+    $old['wp_abs_contact'] = 'help@example.test';
+
+    $this->assertSame('help@example.test', Migration::map($old)['contact']);
+  }
+
+  public function testATitleWithAnEntityStillCountsAsTheDefault(): void
+  {
+    // Core stores "Tom & Jerry" as "Tom &amp; Jerry"; 1.x seeded its settings with that, and its form
+    // showed the value decoded, so a re-saved form holds "Tom & Jerry".
+    $this->site(['name' => 'Tom &amp; Jerry', 'description' => 'Cat &amp; mouse']);
+    $old = $this->legacyDefaults();
+    $old['wp_abs_blogname'] = 'Tom & Jerry';
+    $old['wp_abs_description'] = 'Cat &amp; mouse';
+
+    $new = Migration::map($old);
+
+    $this->assertSame('', $new['short_name']);
+    $this->assertSame('', $new['description']);
+  }
+
+  public function testACustomNameWithAnEntityIsMovedAsPlainText(): void
+  {
+    $old = $this->legacyDefaults();
+    $old['wp_abs_blogname'] = 'R&amp;D Search';
+
+    $this->assertSame('R&D Search', Migration::map($old)['short_name']);
   }
 
   public function testCustomValuesAreMovedAcross(): void

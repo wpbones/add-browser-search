@@ -158,4 +158,42 @@ final class SettingsTest extends MonkeyTestCase
 
     $this->assertSame(Settings::defaults(), Settings::stored());
   }
+
+  public function testTheDefaultNameAndTaglineAreDecodedSoTheXmlEscapesThemOnce(): void
+  {
+    $this->site(['name' => 'Tom &amp; Jerry', 'description' => 'Cat &amp; mouse &#8211; &quot;fun&quot;']);
+
+    $resolved = Settings::resolved();
+
+    $this->assertSame('Tom & Jerry', $resolved['short_name']);
+    $this->assertSame('Cat & mouse &#8211; "fun"', $resolved['description']);
+  }
+
+  public function testTheCutNeverSplitsAnEntity(): void
+  {
+    // Cut as raw text the 16 characters end in "&a".
+    $this->site(['name' => 'Aaaaaaaaaaaaa &amp; B']);
+
+    $this->assertSame('Aaaaaaaaaaaaa &', Settings::resolved()['short_name']);
+  }
+
+  public function testTheSearchFallbackDescriptionUsesTheDecodedTitle(): void
+  {
+    $this->site(['name' => 'Tom &amp; Jerry', 'description' => '']);
+
+    $this->assertSame('Search Tom & Jerry', Settings::resolved()['description']);
+  }
+
+  public function testARefusedFieldKeepsItsSavedValueAndTheValidOnesAreSaved(): void
+  {
+    $stored = ['short_name' => 'Old', 'search_url' => 'https://old.test/?q={searchTerms}', 'tags' => 'old'] + Settings::defaults();
+    $errors = [];
+    $clean = Settings::sanitize(['short_name' => 'New', 'search_url' => 'https://example.test/?s=fixed', 'tags' => 'new'], $errors);
+
+    $merged = Settings::merge($stored, $clean, $errors);
+
+    $this->assertSame('https://old.test/?q={searchTerms}', $merged['search_url'], 'refused: the saved value stays');
+    $this->assertSame('New', $merged['short_name']);
+    $this->assertSame('new', $merged['tags']);
+  }
 }

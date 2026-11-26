@@ -114,11 +114,20 @@ final class Settings
   }
 
   /**
+   * The site title or tagline as plain text. Core stores them HTML-escaped ("Tom &amp; Jerry"), and
+   * the XML writer escapes again, so they are decoded first.
+   */
+  public static function siteText(string $key): string
+  {
+    return trim(wp_specialchars_decode((string) get_bloginfo($key), ENT_QUOTES));
+  }
+
+  /**
    * The site title, cut to the 16 characters OpenSearch allows.
    */
   public static function defaultShortName(): string
   {
-    $name = trim((string) get_bloginfo('name'));
+    $name = self::siteText('name');
 
     if ($name === '') {
       $name = (string) wp_parse_url(home_url(), PHP_URL_HOST);
@@ -129,11 +138,11 @@ final class Settings
 
   public static function defaultDescription(): string
   {
-    $description = trim((string) get_bloginfo('description'));
+    $description = self::siteText('description');
 
     if ($description === '') {
       /* translators: %s: the site title. */
-      $description = sprintf(__('Search %s', 'add-browser-search'), (string) get_bloginfo('name'));
+      $description = sprintf(__('Search %s', 'add-browser-search'), self::siteText('name'));
     }
 
     return self::truncate($description, self::DESCRIPTION_MAX);
@@ -226,6 +235,26 @@ final class Settings
     }
 
     return str_replace(self::TOKEN, self::SEARCH_TERMS, $clean);
+  }
+
+  /**
+   * What to save after a form: the clean values, except that a field which was refused keeps what was
+   * saved before, instead of being wiped.
+   *
+   * @param array<string, mixed> $stored
+   * @param array<string, mixed> $clean
+   * @param array<string, string> $errors field => message
+   * @return array<string, mixed>
+   */
+  public static function merge(array $stored, array $clean, array $errors): array
+  {
+    foreach (array_keys($errors) as $field) {
+      if (array_key_exists($field, $stored)) {
+        $clean[$field] = $stored[$field];
+      }
+    }
+
+    return $clean;
   }
 
   /**

@@ -63,11 +63,20 @@ final class Migration
   public static function map(array $old): array
   {
     $errors = [];
-    $title = trim((string) get_bloginfo('name'));
-    $tagline = trim((string) get_bloginfo('description'));
+    $title = Settings::siteText('name');
+    $tagline = Settings::siteText('description');
 
-    $name = Settings::text($old['wp_abs_blogname'] ?? '');
-    $description = Settings::text($old['wp_abs_description'] ?? '');
+    // 1.x seeded these with the escaped values core stores ("Tom &amp; Jerry"): compare and keep plain text.
+    $name = trim(wp_specialchars_decode(Settings::text($old['wp_abs_blogname'] ?? ''), ENT_QUOTES));
+    $description = trim(wp_specialchars_decode(Settings::text($old['wp_abs_description'] ?? ''), ENT_QUOTES));
+
+    // 1.x defaulted the contact to the administrator's email and published it: that default is not kept.
+    $contact = trim(self::string($old['wp_abs_contact'] ?? ''));
+    $adminEmail = trim((string) get_option('admin_email'));
+
+    if ($adminEmail !== '' && strcasecmp($contact, $adminEmail) === 0) {
+      $contact = '';
+    }
 
     // The old plugin's own default for the favicon was /favicon.ico of this site: now it is the site icon.
     $favicon = trim(self::string($old['wp_abs_favicon'] ?? ''));
@@ -84,7 +93,7 @@ final class Migration
     $input = [
       'short_name' => $name === $title ? '' : $name,
       'description' => $description === $tagline ? '' : $description,
-      'contact' => self::string($old['wp_abs_contact'] ?? ''),
+      'contact' => $contact,
       'tags' => self::string($old['wp_abs_tags'] ?? ''),
       'image' => $icon,
       'search_url' => self::sameAddress($search, Settings::defaultSearchUrl()) ? '' : $search,

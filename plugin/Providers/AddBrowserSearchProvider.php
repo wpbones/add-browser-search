@@ -17,11 +17,19 @@ if (!defined('ABSPATH')) {
  */
 class AddBrowserSearchProvider extends ServiceProvider
 {
+  /**
+   * WP Bones loads the text domain it derives from the plugin name in `namespace` (wp-abs, the main
+   * file's name); the plugin's text domain is its WordPress.org slug, so load that one too, from
+   * wherever the plugin folder is.
+   */
+  public function loadTextDomain(): void
+  {
+    load_plugin_textdomain('add-browser-search', false, dirname(plugin_basename($this->plugin->file)) . '/languages');
+  }
+
   public function register()
   {
-    // WP Bones loads the text domain it derives from the plugin name in `namespace` (wp-abs, the main
-    // file's name); the plugin's text domain is its WordPress.org slug, so load that one too.
-    load_plugin_textdomain('add-browser-search', false, 'add-browser-search/languages');
+    $this->loadTextDomain();
 
     // Settings first: everything below reads them. Once the option exists this costs nothing.
     if (get_option(Settings::OPTION, null) === null) {

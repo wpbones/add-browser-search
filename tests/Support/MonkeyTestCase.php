@@ -36,6 +36,7 @@ abstract class MonkeyTestCase extends TestCase
 
     Functions\stubs([
       '__' => static fn($text) => $text,
+      'wp_specialchars_decode' => static fn($text, $flags = ENT_NOQUOTES) => htmlspecialchars_decode((string) $text, $flags),
       'esc_attr' => static fn($text) => htmlspecialchars((string) $text, ENT_QUOTES),
       'esc_url' => static fn($text) => (string) $text,
       'wp_strip_all_tags' => static fn($text) => trim(strip_tags((string) $text)),
@@ -88,6 +89,7 @@ abstract class MonkeyTestCase extends TestCase
   protected function site(array $info = [], string $home = 'https://example.test'): void
   {
     $info += ['name' => 'Example Site', 'description' => 'Just another site'];
+    $this->options += ['admin_email' => 'admin@example.test'];
 
     Functions\when('get_bloginfo')->alias(static fn($key) => $info[$key] ?? '');
     Functions\when('home_url')->alias(static fn($path = '') => $home . ($path !== '' ? '/' . ltrim($path, '/') : ''));

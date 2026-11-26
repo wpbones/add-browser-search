@@ -117,7 +117,8 @@ final class SettingsPage
 
     $this->errors = [];
     $this->submitted = $input;
-    Settings::save(Settings::sanitize($input, $this->errors));
+    // A refused field keeps what was saved before; the valid ones are saved.
+    Settings::save(Settings::merge(Settings::stored(), Settings::sanitize($input, $this->errors), $this->errors));
 
     if (!$this->errors) {
       wp_safe_redirect(add_query_arg('settings-updated', 'true', self::url()));
