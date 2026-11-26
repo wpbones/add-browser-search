@@ -67,7 +67,7 @@ php bones                   # the WP Bones CLI
 php bones deploy ../build/add-browser-search --wp --no-build   # the package for WordPress.org
 ```
 
-The main file is `wp-abs.php` and must stay so: WordPress tracks an active plugin by `folder/main-file`. WP Bones names the main file after the plugin, so `composer.json` patches the vendored `Plugin.php` after `rename --update` to keep it pointing at `wp-abs.php`.
+The main file is `wp-abs.php` and must stay so: WordPress tracks an active plugin by `folder/main-file`. WP Bones names the main file after the plugin name in the `namespace` file (`WP ABS` gives `wp-abs.php`), while the header keeps `Plugin Name: Add Browser Search`.
 
 ## License
 
