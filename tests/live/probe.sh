@@ -263,8 +263,8 @@ check "invalid fields re-render the page" "$code" 200
 has "…naming the search address" "$(cat "$T/bad.html")" "must be a web address that contains {searchTerms}"
 has "…and the contact" "$(cat "$T/bad.html")" "not a valid email address"
 has "…and the icon" "$(cat "$T/bad.html")" "not a valid web address"
-check "the name was cut to 16 characters" "$(probe state | jqv "['new']['short_name']")" "This name is far"
-check "the bad search address was not saved" "$(probe state | jqv "['new']['search_url']")" ""
+check "the valid fields were saved: the name was cut to 16 characters" "$(probe state | jqv "['new']['short_name']")" "This name is far"
+check "the bad search address was not saved: the previous one stays" "$(probe state | jqv "['new']['search_url']")" "https://www.google.com/search?q={searchTerms}&hl=it"
 check "javascript: icon was not saved" "$(probe state | jqv "['new']['image']")" ""
 
 page=$(curl -s -L -b "$J" -c "$J" "$BASE/wp-admin/options-general.php?page=add-browser-search")
