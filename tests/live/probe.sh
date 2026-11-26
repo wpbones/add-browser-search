@@ -85,7 +85,7 @@ switch ($a) {
     update_option('wp_abs_settings', [
       'wp_abs_blogname' => 'Copied Over', 'wp_abs_description' => 'Moved without activation', 'wp_abs_contact' => '',
       'wp_abs_tags' => '', 'wp_abs_favicon' => '', 'wp_abs_image' => '',
-      'wp_abs_searchurl' => 'http://127.0.0.1:9431/?s={searchTerms}', 'wp_abs_searchform' => 'http://127.0.0.1:9431',
+      'wp_abs_searchurl' => home_url('/?s={searchTerms}'), 'wp_abs_searchform' => home_url(),
     ]);
     $rules = get_option('rewrite_rules');
     unset($rules['^opensearch\\.xml$']);
@@ -133,10 +133,10 @@ update_option('wp_abs_settings', [
   'wp_abs_description' => 'Find anything at Acme',
   'wp_abs_contact' => 'hi@acme.test',
   'wp_abs_tags' => 'acme shop',
-  'wp_abs_favicon' => 'http://127.0.0.1:9431/favicon.ico',
+  'wp_abs_favicon' => home_url('/favicon.ico'),
   'wp_abs_image' => '',
   'wp_abs_searchurl' => 'https://www.google.com/search?q={searchTerms}&hl=it',
-  'wp_abs_searchform' => 'http://127.0.0.1:9431',
+  'wp_abs_searchform' => home_url(),
 ]);
 PHP
 )
