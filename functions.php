@@ -21,7 +21,7 @@ if (!defined('OPENSEARCH_XML')) {
 }
 
 if (!defined('WPABS_VERSION')) {
-  define('WPABS_VERSION', '2.0.0');
+  define('WPABS_VERSION', '2.0.1');
 }
 
 if (!function_exists('add_browser_search_url')) {

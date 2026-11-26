@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/donate/?hosted_button_id=TBPD4R78VDMCJ
 Tags: opensearch, search, browser, search engine, suggestions
 Requires at least: 6.6
 Tested up to: 7.2
-Stable tag: 2.0.0
+Stable tag: 2.0.1
 Requires PHP: 8.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -104,6 +104,10 @@ Yes! Please report bugs at [the support forum](https://wordpress.org/support/plu
 2. The preview of the XML browsers receive, and the notes that tell how to check it in Firefox and in the Chromium browsers.
 
 ## Changelog
+
+### 2.0.1
+
+* Translations load through WP Bones 3.4.1, which reads the plugin's `Text Domain` and `Domain Path`; the plugin no longer loads them itself. The translations a site sees do not change.
 
 ### 2.0.0
 
