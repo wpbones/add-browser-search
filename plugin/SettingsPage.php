@@ -137,6 +137,7 @@ final class SettingsPage
     }
 
     $resolved = Settings::resolved();
+    $sample = rawurlencode(__('hello', 'add-browser-search'));
 
     $this->plugin
       ->view('settings.index')
@@ -152,8 +153,8 @@ final class SettingsPage
         'urls' => [
           'description' => Urls::description(),
           'plain' => Urls::plainDescription(),
-          'suggestions' => str_replace(Settings::SEARCH_TERMS, rawurlencode(__('hello', 'add-browser-search')), Urls::suggestions()),
-          'search' => str_replace(Settings::SEARCH_TERMS, rawurlencode(__('hello', 'add-browser-search')), $resolved['search_url']),
+          'suggestions' => str_replace(Settings::SEARCH_TERMS, $sample, Urls::suggestions()),
+          'search' => str_replace(Settings::SEARCH_TERMS, $sample, $resolved['search_url']),
         ],
         'limits' => ['short_name' => Settings::SHORT_NAME_MAX, 'description' => Settings::DESCRIPTION_MAX, 'tags' => Settings::TAGS_MAX],
         'defaults' => [

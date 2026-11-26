@@ -35,9 +35,10 @@ final class Settings
   public const SEARCH_TERMS = '{searchTerms}';
 
   /**
-   * A stand-in for {searchTerms}: esc_url_raw() strips the braces.
+   * A stand-in for {searchTerms} while a URL goes through a function that would strip the braces
+   * (esc_url_raw(), add_query_arg()).
    */
-  private const TOKEN = 'ABSSEARCHTERMSTOKEN';
+  public const TOKEN = 'ABSSEARCHTERMSTOKEN';
 
   /**
    * The fields, with what an empty one means.

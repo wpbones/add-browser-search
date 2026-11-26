@@ -25,8 +25,6 @@ final class Urls
   public const DESCRIPTION_TYPE = 'application/opensearchdescription+xml';
   public const SUGGESTIONS_TYPE = 'application/x-suggestions+json';
 
-  private const TOKEN = 'ABSSEARCHTERMSTOKEN';
-
   /**
    * The stable address of the description: `/opensearch.xml` with pretty permalinks.
    */
@@ -52,9 +50,9 @@ final class Urls
    */
   public static function suggestions(): string
   {
-    $url = add_query_arg('q', self::TOKEN, rest_url(trim(self::REST_NAMESPACE . self::REST_ROUTE, '/')));
+    $url = add_query_arg('q', Settings::TOKEN, rest_url(trim(self::REST_NAMESPACE . self::REST_ROUTE, '/')));
 
-    return str_replace(self::TOKEN, Settings::SEARCH_TERMS, $url);
+    return str_replace(Settings::TOKEN, Settings::SEARCH_TERMS, $url);
   }
 
   /**

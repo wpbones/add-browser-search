@@ -70,6 +70,21 @@ switch ($a) {
   case 'activate':
     echo wp_json_encode(['error' => is_wp_error($r = activate_plugin('add-browser-search/wp-abs.php')) ? $r->get_error_message() : null]);
     break;
+  case 'update_by_copy':
+    // What WordPress finds after 1.x files are replaced by 2.0 ones while the plugin stays active: no
+    // activation hook runs, there are only the old option, no new settings and no rewrite rule.
+    delete_option('add_browser_search_settings');
+    delete_option('add_browser_search_rewrite');
+    update_option('wp_abs_settings', [
+      'wp_abs_blogname' => 'Copied Over', 'wp_abs_description' => 'Moved without activation', 'wp_abs_contact' => '',
+      'wp_abs_tags' => '', 'wp_abs_favicon' => '', 'wp_abs_image' => '',
+      'wp_abs_searchurl' => 'http://127.0.0.1:9431/?s={searchTerms}', 'wp_abs_searchform' => 'http://127.0.0.1:9431',
+    ]);
+    $rules = get_option('rewrite_rules');
+    unset($rules['^opensearch\\.xml$']);
+    update_option('rewrite_rules', $rules);
+    echo '{}';
+    break;
   case 'uninstall':
     define('WP_UNINSTALL_PLUGIN', 'add-browser-search/wp-abs.php');
     include WP_PLUGIN_DIR . '/add-browser-search/uninstall.php';
@@ -279,6 +294,14 @@ check "…the rewrite rule is gone" "$(probe state | jqv "['rule']")" false
 check "settings survive deactivation" "$(probe state | jqv "['new']['short_name']")" "Probe Shop"
 probe activate >/dev/null
 check "after activation /opensearch.xml is back (200)" "$(curl -s -o /dev/null -w '%{http_code}' "$BASE/opensearch.xml")" 200
+
+echo "• an update that replaces the files of an active 1.x plugin (no activation hook)"
+probe update_by_copy >/dev/null
+headers=$(curl -s -D - -o "$T/copied.xml" "$BASE/opensearch.xml")
+check "the first request already serves /opensearch.xml (200)" "$(printf '%s' "$headers" | head -1 | tr -d '\r' | awk '{print $2}')" 200
+has "…with the migrated 1.x name" "$(cat "$T/copied.xml")" "<ShortName>Copied Over</ShortName>"
+check "…the default search address was dropped, so it follows the site" "$(probe state | jqv "['new']['search_url']")" ""
+check "…and the old option is gone" "$(probe state | jqv "['legacy']")" null
 
 echo "• uninstall"
 un=$(probe uninstall)

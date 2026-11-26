@@ -139,7 +139,7 @@ $abs_value = static function (string $key) use ($settings, $errors, $submitted) 
         <th scope="row"><label for="abs-search-form"><?php esc_html_e('Search page', 'add-browser-search'); ?></label></th>
         <td>
           <input type="url" id="abs-search-form" name="<?php echo esc_attr($field); ?>[search_form]" class="large-text code" value="<?php echo esc_attr($abs_value('search_form')); ?>" placeholder="<?php echo esc_attr($defaults['search_form']); ?>" />
-          <p class="description"><?php esc_html_e('The page with your search form, which Firefox opens when someone chooses to search from the engine itself. Empty: your home page.', 'add-browser-search'); ?></p>
+          <p class="description"><?php esc_html_e('The page with your search form. Some browsers, Firefox among them, use it as the engine\'s own page. Empty: your home page.', 'add-browser-search'); ?></p>
           <?php if (isset($errors['search_form'])) : ?><p class="abs-error"><?php echo esc_html($errors['search_form']); ?></p><?php endif; ?>
         </td>
       </tr>
@@ -173,11 +173,11 @@ $abs_value = static function (string $key) use ($settings, $errors, $submitted) 
       );
       ?>
     </li>
-    <li><?php esc_html_e('Firefox: open the search menu, or the address bar menu, on any page of your site and choose "Add" with your engine\'s name. Then type its keyword, or pick it as the default.', 'add-browser-search'); ?></li>
-    <li><?php esc_html_e('Chrome, Edge, Brave and other Chromium browsers: visit your site and search it once; the engine appears under Settings > Search engine > Manage search engines and site search, where you can give it a shortcut. Typing your site address and pressing Tab or Space then searches it.', 'add-browser-search'); ?></li>
+    <li><?php esc_html_e('Firefox: on a page of your site, open the search menu of the address bar and choose "Add" next to your engine\'s name. Then make it the default, or give it a keyword.', 'add-browser-search'); ?></li>
+    <li><?php esc_html_e('Chrome, Edge, Brave and other Chromium browsers: visit your site and search it once. The engine is then listed under Settings > Search engine > Manage search engines and site search, where you can make it the default or give it a shortcut.', 'add-browser-search'); ?></li>
     <li><?php esc_html_e('Safari does not read OpenSearch descriptions.', 'add-browser-search'); ?></li>
     <li>
-      <?php esc_html_e('Try the two addresses a browser calls:', 'add-browser-search'); ?>
+      <?php esc_html_e('Try what a browser calls:', 'add-browser-search'); ?>
       <a href="<?php echo esc_url($urls['search']); ?>" target="_blank" rel="noopener"><?php esc_html_e('a search', 'add-browser-search'); ?></a><?php if ($settings['suggestions']) : ?>,
         <a href="<?php echo esc_url($urls['suggestions']); ?>" target="_blank" rel="noopener"><?php esc_html_e('the suggestions', 'add-browser-search'); ?></a><?php endif; ?>.
     </li>
