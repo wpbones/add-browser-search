@@ -1,17 +1,19 @@
 {
   "$schema": "https://playground.wordpress.net/blueprint-schema.json",
-  "landingPage": "/wp-admin/options-general.php?page=add-browser-search",
   "preferredVersions": {
     "php": "8.2",
     "wp": "latest"
   },
-  "phpExtensionBundles": [
-    "kitchen-sink"
-  ],
   "features": {
     "networking": true
   },
+  "landingPage": "/wp-admin/options-general.php?page=add-browser-search",
   "steps": [
+    {
+      "step": "login",
+      "username": "admin",
+      "password": "password"
+    },
     {
       "step": "installPlugin",
       "pluginData": {
@@ -23,9 +25,16 @@
       }
     },
     {
-      "step": "login",
-      "username": "admin",
-      "password": "password"
+      "step": "setSiteOptions",
+      "options": {
+        "blogname": "Corner Bakery",
+        "blogdescription": "Fresh bread every morning",
+        "permalink_structure": "/%postname%/"
+      }
+    },
+    {
+      "step": "runPHP",
+      "code": "<?php\nrequire '/wordpress/wp-load.php';\nforeach ([\n  ['Sourdough starter, step by step', 'Flour, water and a week of patience.'],\n  ['Our opening hours', 'Every day from 7 to 19, Sundays until 13.'],\n  ['Gluten-free loaves are back', 'Rice and buckwheat, baked on Thursdays.'],\n  ['Croissant Sunday', 'Butter croissants, plain and with chocolate.'],\n  ['Whole wheat basics', 'Why stone-ground flour tastes better.'],\n  ['Bread delivery in town', 'Order by 18:00, get it before breakfast.'],\n] as [$title, $text]) {\n  wp_insert_post(['post_title' => $title, 'post_content' => \"<!-- wp:paragraph --><p>$text</p><!-- /wp:paragraph -->\", 'post_status' => 'publish']);\n}\nflush_rewrite_rules();\n"
     }
   ]
 }
