@@ -34,7 +34,14 @@ trap cleanup EXIT
 
 rsync -a --exclude node_modules --exclude .git "$PLUGIN/" "$T/$SLUG/"
 cp -R "$WPV" "$T/wordpress"
-mkdir -p "$T/logs" "$T/probe"
+mkdir -p "$T/logs" "$T/probe" "$T/mu"
+
+# WordPress refuses a WPLANG whose language pack is not installed, so the locale is switched by a
+# must-use plugin that reads a flag file the probe page creates and removes.
+cat > "$T/mu/abs-locale.php" <<'PHP'
+<?php
+add_filter('locale', static fn($locale) => file_exists('/logs/de.flag') ? 'de_DE' : $locale);
+PHP
 
 # A page the probe calls to read and change the site from inside, since Playground has no WP-CLI.
 cat > "$T/probe/probe.php" <<'PHP'
@@ -83,6 +90,14 @@ switch ($a) {
     $rules = get_option('rewrite_rules');
     unset($rules['^opensearch\\.xml$']);
     update_option('rewrite_rules', $rules);
+    echo '{}';
+    break;
+  case 'locale_de':
+    touch('/logs/de.flag');
+    echo '{}';
+    break;
+  case 'locale_en':
+    @unlink('/logs/de.flag');
     echo '{}';
     break;
   case 'uninstall':
@@ -139,7 +154,7 @@ JSON
 
 ( cd "$T" && exec npx -y "$PLAYGROUND_CLI" server --blueprint="$T/blueprint.json" --port=$PORT \
   --mount-before-install="$T/wordpress:/wordpress" --wordpress-install-mode=install-from-existing-files \
-  --mount="$T/$SLUG:/wordpress/wp-content/plugins/$SLUG" --mount="$T/logs:/logs" --mount="$T/probe:/wordpress/abs-probe" \
+  --mount="$T/$SLUG:/wordpress/wp-content/plugins/$SLUG" --mount="$T/logs:/logs" --mount="$T/probe:/wordpress/abs-probe" --mount="$T/mu:/wordpress/wp-content/mu-plugins" \
   > "$T/playground.log" 2>&1 ) &
 server=$!
 for _ in $(seq 1 120); do grep -q 'Ready!' "$T/playground.log" 2>/dev/null && break; kill -0 $server 2>/dev/null || break; perl -e 'select(undef, undef, undef, 2)'; done
@@ -284,6 +299,11 @@ check "the query-string address still answers" "$(curl -s -o /dev/null -w '%{htt
 has "the head link points at it" "$(curl -s "$BASE/")" 'href="'"$BASE"'/?add_browser_search=opensearch"'
 has "…and so does the self url" "$(curl -s "$BASE/?add_browser_search=opensearch")" "template=\"$BASE/?add_browser_search=opensearch\""
 probe pretty >/dev/null
+
+echo "• translations"
+probe locale_de >/dev/null
+check "the settings page is in German with the plugin's own text domain" "$(curl -s -L -b "$J" -c "$J" "$BASE/wp-admin/options-general.php?page=add-browser-search" | grep -c 'Deine Suchmaschine')" 1
+probe locale_en >/dev/null
 
 echo "• deactivate and activate"
 probe deactivate >/dev/null

@@ -40,8 +40,7 @@
   "scripts": {
     "post-autoload-dump": [
       "php -r \"copy('vendor/wpbones/wpbones/src/Console/bin/bones', 'bones');\"",
-      "php bones rename --update",
-      "php -r \"file_put_contents('vendor/wpbones/wpbones/src/Foundation/Plugin.php', str_replace('/add-browser-search.php', '/wp-abs.php', file_get_contents('vendor/wpbones/wpbones/src/Foundation/Plugin.php')));\""
+      "php bones rename --update"
     ],
     "test": "phpunit"
   },
