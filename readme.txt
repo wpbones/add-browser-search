@@ -102,8 +102,6 @@ Yes! Please report bugs at [the support forum](https://wordpress.org/support/plu
 
 1. The Settings page: the address of the description with its Copy and Open buttons, and the fields (name, description, contact, tags, icon, search address, search page, suggestions).
 2. The preview of the XML browsers receive, and the notes that tell how to check it in Firefox and in the Chromium browsers.
-3. The front-end output: the page source of a site with the `<link rel="search">` tag in its head.
-4. A browser address bar searching the site, with the title suggestions listed under it.
 
 ## Changelog
 
