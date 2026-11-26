@@ -1,0 +1,238 @@
+# Copyright (C) 2026 Giovambattista Fazioli
+# This file is distributed under the GPLv2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Add Browser Search 2.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/add-browser-search\n"
+"POT-Creation-Date: 2026-11-26T08:30:01+00:00\n"
+"PO-Revision-Date: 2026-11-26 00:00+0000\n"
+"Last-Translator: Giovambattista Fazioli\n"
+"Language-Team: Deutsch\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Domain: add-browser-search\n"
+
+#. Plugin Name of the plugin
+#: wp-abs.php
+#: plugin/SettingsPage.php:55
+#: plugin/SettingsPage.php:56
+#: resources/views/settings/index.php:26
+msgid "Add Browser Search"
+msgstr "Add Browser Search"
+
+#. Plugin URI of the plugin
+#: wp-abs.php
+msgid "https://github.com/wpbones/add-browser-search"
+msgstr "https://github.com/wpbones/add-browser-search"
+
+#. Description of the plugin
+#: wp-abs.php
+msgid "Publish your site's search as an OpenSearch description, so browsers offer to add it as a search engine and can search your site from the address bar."
+msgstr "Veröffentlicht die Suche deiner Website als OpenSearch-Beschreibung, damit Browser anbieten, sie als Suchmaschine hinzuzufügen, und deine Website direkt aus der Adressleiste durchsuchen können."
+
+#. Author of the plugin
+#: wp-abs.php
+msgid "Giovambattista Fazioli"
+msgstr "Giovambattista Fazioli"
+
+#. Author URI of the plugin
+#: wp-abs.php
+msgid "https://undolog.com"
+msgstr "https://undolog.com"
+
+#. translators: %s: the site title.
+#: plugin/Settings.php:136
+#, php-format
+msgid "Search %s"
+msgstr "%s durchsuchen"
+
+#: plugin/Settings.php:174
+msgid "The contact is not a valid email address."
+msgstr "Der Kontakt ist keine gültige E-Mail-Adresse."
+
+#: plugin/Settings.php:180
+msgid "The icon is not a valid web address."
+msgstr "Das Symbol ist keine gültige Webadresse."
+
+#: plugin/Settings.php:180
+msgid "The search page is not a valid web address."
+msgstr "Die Suchseite ist keine gültige Webadresse."
+
+#. translators: %s: the {searchTerms} placeholder.
+#: plugin/Settings.php:203
+#, php-format
+msgid "The search address must be a web address that contains %s."
+msgstr "Die Suchadresse muss eine Webadresse sein, die %s enthält."
+
+#: plugin/SettingsPage.php:79
+msgid "Settings"
+msgstr "Einstellungen"
+
+#: plugin/SettingsPage.php:111
+msgid "Sorry, you are not allowed to manage these settings."
+msgstr "Du hast keine Berechtigung, diese Einstellungen zu verwalten."
+
+#: plugin/SettingsPage.php:140
+msgid "hello"
+msgstr "hallo"
+
+#: plugin/Suggestions.php:35
+msgid "Search suggestions are turned off."
+msgstr "Suchvorschläge sind ausgeschaltet."
+
+#: resources/views/settings/index.php:29
+msgid "Your site publishes its search as an OpenSearch description. Browsers read it to offer \"add this search engine\" and to search your site straight from the address bar."
+msgstr "Deine Website veröffentlicht ihre Suche als OpenSearch-Beschreibung. Browser lesen sie, um „Diese Suchmaschine hinzufügen“ anzubieten und deine Website direkt aus der Adressleiste zu durchsuchen."
+
+#: resources/views/settings/index.php:34
+msgid "The settings of the previous version were moved here. Look them over and save."
+msgstr "Die Einstellungen der vorherigen Version wurden hierher übernommen. Sieh sie durch und speichere."
+
+#: resources/views/settings/index.php:39
+msgid "Settings saved."
+msgstr "Einstellungen gespeichert."
+
+#: resources/views/settings/index.php:43
+msgid "Some fields were not saved:"
+msgstr "Einige Felder wurden nicht gespeichert:"
+
+#: resources/views/settings/index.php:52
+msgid "Your search engine"
+msgstr "Deine Suchmaschine"
+
+#: resources/views/settings/index.php:56
+msgid "Description address"
+msgstr "Adresse der Beschreibung"
+
+#: resources/views/settings/index.php:60
+msgid "Copied"
+msgstr "Kopiert"
+
+#: resources/views/settings/index.php:60
+msgid "Copy"
+msgstr "Kopieren"
+
+#: resources/views/settings/index.php:61
+msgid "Open"
+msgstr "Öffnen"
+
+#. translators: %s: an address.
+#: resources/views/settings/index.php:67
+#, php-format
+msgid "Always works, whatever the permalinks: %s"
+msgstr "Funktioniert immer, egal welche Permalinks: %s"
+
+#: resources/views/settings/index.php:81
+msgid "Name"
+msgstr "Name"
+
+#: resources/views/settings/index.php:86
+msgid "What the browser calls the engine. At most 16 characters. Empty: your site title."
+msgstr "So nennt der Browser die Suchmaschine. Höchstens 16 Zeichen. Leer: der Titel deiner Website."
+
+#: resources/views/settings/index.php:91
+msgid "Description"
+msgstr "Beschreibung"
+
+#: resources/views/settings/index.php:96
+msgid "A sentence about what the search finds. At most 1024 characters. Empty: your tagline."
+msgstr "Ein Satz dazu, was die Suche findet. Höchstens 1024 Zeichen. Leer: der Untertitel deiner Website."
+
+#: resources/views/settings/index.php:100
+msgid "Contact"
+msgstr "Kontakt"
+
+#: resources/views/settings/index.php:103
+msgid "An email address people can write to about this search engine. It is public: the description lists it. Empty: none."
+msgstr "Eine E-Mail-Adresse, an die man sich wegen dieser Suchmaschine wenden kann. Sie ist öffentlich: Die Beschreibung führt sie auf. Leer: keine."
+
+#: resources/views/settings/index.php:108
+msgid "Tags"
+msgstr "Schlagwörter"
+
+#: resources/views/settings/index.php:111
+msgid "Keywords, separated by spaces."
+msgstr "Schlüsselwörter, durch Leerzeichen getrennt."
+
+#: resources/views/settings/index.php:115
+msgid "Icon address"
+msgstr "Adresse des Symbols"
+
+#: resources/views/settings/index.php:118
+msgid "The icon next to the engine in the browser: a PNG, or an .ico. Empty: your site icon (Appearance > Customize > Site Identity), if you set one."
+msgstr "Das Symbol neben der Suchmaschine im Browser: ein PNG oder eine .ico-Datei. Leer: das Website-Icon (Design > Customizer > Website-Informationen), falls du eines festgelegt hast."
+
+#: resources/views/settings/index.php:123
+msgid "Search address"
+msgstr "Suchadresse"
+
+#. translators: %s: the {searchTerms} placeholder.
+#: resources/views/settings/index.php:130
+#, php-format
+msgid "Where the browser sends the typed words: put %s where they go. Empty: your own search. You can point it at another search, such as a Google Programmable Search page."
+msgstr "Wohin der Browser die eingetippten Wörter sendet: Setze %s dorthin, wo sie hinsollen. Leer: die Suche deiner Website. Du kannst auch auf eine andere Suche verweisen, etwa eine Google-Programmable-Search-Seite."
+
+#: resources/views/settings/index.php:139
+msgid "Search page"
+msgstr "Suchseite"
+
+#: resources/views/settings/index.php:142
+msgid "The page with your search form. Some browsers, Firefox among them, use it as the engine's own page. Empty: your home page."
+msgstr "Die Seite mit deinem Suchformular. Manche Browser, darunter Firefox, verwenden sie als eigene Seite der Suchmaschine. Leer: deine Startseite."
+
+#: resources/views/settings/index.php:147
+msgid "Suggestions"
+msgstr "Vorschläge"
+
+#: resources/views/settings/index.php:151
+msgid "Suggest the titles of posts and pages while someone types in the address bar"
+msgstr "Titel von Beiträgen und Seiten vorschlagen, während jemand in die Adressleiste tippt"
+
+#: resources/views/settings/index.php:153
+msgid "A public address answers with at most 8 published titles, cached for a minute. Password-protected posts are never listed."
+msgstr "Eine öffentliche Adresse antwortet mit höchstens 8 veröffentlichten Titeln, eine Minute lang zwischengespeichert. Passwortgeschützte Beiträge werden nie aufgeführt."
+
+#: resources/views/settings/index.php:161
+msgid "Preview"
+msgstr "Vorschau"
+
+#: resources/views/settings/index.php:162
+msgid "What browsers receive from the address above, as saved. Save first to see a change."
+msgstr "Was Browser von der obigen Adresse erhalten, wie gespeichert. Speichere zuerst, um eine Änderung zu sehen."
+
+#: resources/views/settings/index.php:165
+msgid "Check it"
+msgstr "Prüfen"
+
+#. translators: %s: an address.
+#: resources/views/settings/index.php:171
+#, php-format
+msgid "Open your site in a new tab: its page source holds a %s tag, and the address above shows the XML."
+msgstr "Öffne deine Website in einem neuen Tab: Der Seitenquelltext enthält ein %s-Tag, und die obige Adresse zeigt das XML."
+
+#: resources/views/settings/index.php:176
+msgid "Firefox: on a page of your site, open the search menu of the address bar and choose \"Add\" next to your engine's name. Then make it the default, or give it a keyword."
+msgstr "Firefox: Öffne auf einer Seite deiner Website das Suchmenü der Adressleiste und wähle „Hinzufügen“ neben dem Namen deiner Suchmaschine. Lege sie dann als Standard fest oder gib ihr ein Schlüsselwort."
+
+#: resources/views/settings/index.php:177
+msgid "Chrome, Edge, Brave and other Chromium browsers: visit your site and search it once. The engine is then listed under Settings > Search engine > Manage search engines and site search, where you can make it the default or give it a shortcut."
+msgstr "Chrome, Edge, Brave und andere Chromium-Browser: Besuche deine Website und suche einmal darin. Die Suchmaschine erscheint dann unter Einstellungen > Suchmaschine > Suchmaschinen und Websitesuche verwalten, wo du sie als Standard festlegen oder mit einem Kürzel versehen kannst."
+
+#: resources/views/settings/index.php:178
+msgid "Safari does not read OpenSearch descriptions."
+msgstr "Safari liest keine OpenSearch-Beschreibungen."
+
+#: resources/views/settings/index.php:180
+msgid "Try what a browser calls:"
+msgstr "Probiere aus, was ein Browser aufruft:"
+
+#: resources/views/settings/index.php:181
+msgid "a search"
+msgstr "eine Suche"
+
+#: resources/views/settings/index.php:182
+msgid "the suggestions"
+msgstr "die Vorschläge"
