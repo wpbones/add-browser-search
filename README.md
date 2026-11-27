@@ -23,6 +23,7 @@ Built on the [WPBones](https://wpbones.com) framework. Version 2.0.0 is a rewrit
 
 ## Links
 
+- [Add Browser Search in 15 seconds](https://www.youtube.com/watch?v=TddXEwy1P00) (video)
 - [WordPress.org Plugin Page](https://wordpress.org/plugins/add-browser-search/)
 - [Support Forum](https://wordpress.org/support/plugin/add-browser-search/)
 - [Changelog](readme.txt#L1)

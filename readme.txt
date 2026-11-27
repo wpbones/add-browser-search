@@ -17,6 +17,8 @@ Add Browser Search makes your WordPress search available to the browsers your vi
 
 It works the moment you activate it. Every field has a sensible default read from your site, so the engine follows your site title, tagline and site icon when you change them. The Settings page is there for when you want to change something.
 
+https://www.youtube.com/watch?v=TddXEwy1P00
+
 ### What it publishes
 
 * **A valid OpenSearch 1.1 description**, served as `application/opensearchdescription+xml`, with the name (at most 16 characters, as the standard says), the description, an optional contact and tags, the icon, the search address, the search form page and a self link browsers use to keep the engine up to date.
